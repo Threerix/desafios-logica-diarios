@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <script>
+    let senha = 0
+    let tentativas = 0
+
+    function gerarSenha() {
+        senha = Math.floor(Math.random() * 9000) + 1000
+        alert("Nova senha gerada!")
+    }
+
+    gerarSenha();
+
+    function chutarSenha() {
+        while (tentativas < 5) {
+            let chute = parseInt(prompt("Chute o valor da senha de 4 dígitos!"))
+
+            if (chute < 1000 || chute > 9000) {
+                alert("O chute deve ser entre 1000 e 9000!");
+                continue;
+            }
+
+            if (chute < senha) {
+                alert("O chute foi menor que a senha atual, tente novamente!");
+            } 
+            else if (chute > senha) {
+                alert("O chute foi maior que a senha atual, tente novamente!");
+            } 
+            else {
+                alert("Parabéns, você abriu o cofre!");
+                tentativas = 0;
+                gerarSenha();
+                return;
+            }
+
+            tentativas++;
+        }
+
+        alert("Suas tentativas acabaram! A senha era " + senha);
+        tentativas = 0;
+        gerarSenha();
+    }
+</script>
+</body>
+</html>

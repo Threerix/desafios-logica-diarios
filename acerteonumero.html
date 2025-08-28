@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+let num = []
+let contador = 0
+
+function gerar_numero() {
+    let numeroGerado = Math.floor(Math.random() * 50) + 1
+    num.splice(0, num.length, numeroGerado) // garante que só tenha 1 número
+    contador = 0 // zera tentativas
+    alert("Novo número aleatório gerado!") 
+}
+
+gerar_numero()
+
+function chutarNumero() {
+    if (contador >= 6) {
+        alert("Você esgotou suas tentativas! O número era " + num[0])
+        gerar_numero()
+        return
+    }
+
+    let chute = parseInt(prompt("Chute um número de 1 a 50 (Tentativa " + (contador+1) + " de 6)"))
+
+    if (chute < 1 || chute > 50) {
+        alert("Para o número ser válido ele deve ser entre 1 e 50!")
+        return
+    }
+
+    if (chute === num[0]) {
+        alert("Parabéns, você acertou!")
+        gerar_numero()
+    } else if (chute < num[0]) {
+        alert("O número é maior, tente novamente!")
+    } else {
+        alert("O número é menor, tente novamente!")
+    }
+
+    contador++
+}
+    </script>
+</body>
+</html>
